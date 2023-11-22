@@ -18,7 +18,7 @@ export default function Forecast({ forecast }) {
   }
 
   return (
-    <div className="col-2">
+    <div className="col-sm-2">
       <p className="forecast-day">{generateDay(forecast.dt).slice(0, 3)}</p>
       <img
         className="forecast-icon"
