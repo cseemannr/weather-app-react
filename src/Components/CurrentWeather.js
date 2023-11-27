@@ -46,12 +46,12 @@ export default function CurrentWeather({ weather }) {
         Last updated: {generateDay(weather.date)}, {generateTime(weather.date)}
       </p>
       <p className="text-capitalize">{weather.description}</p>
-      <h2 className="display-1 col-3">
+      <h2 className="display-1 col-sm-3">
         {weather.temp}
         <span className="display-6 opacity-50">ºC</span>
       </h2>
       <img
-        className="col-3"
+        className="col-sm-3 current-weather-img"
         src={`https://openweathermap.org/img/wn/${weather.icon}@4x.png`}
         alt={`${weather.description} icon`}
       />

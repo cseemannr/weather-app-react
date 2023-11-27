@@ -47,6 +47,10 @@ form {
   color: var(--bs-gray-700);
 }
 
+.current-weather-img {
+  max-width: 250px;
+}
+
 .svg-icon {
   width: 36px;
   fill: var(--bs-gray-600);
@@ -72,6 +76,10 @@ a:active {
 .forecast-day {
   font-size: 16px;
 }
+.forecast-container p {
+  margin-bottom: 0;
+}
+
 .forecast-container span {
   margin: 4px;
 }
@@ -80,4 +88,10 @@ a:active {
 }
 .error {
   color: var(--accent-color);
+}
+
+@media (max-width: 575px) {
+  .forecast-container div {
+    margin-bottom: 30px;
+  }
 }
