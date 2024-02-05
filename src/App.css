@@ -29,6 +29,14 @@ form {
   position: relative;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+.code-link a:link {
+  text-decoration: underline;
+}
+
 .container {
   max-width: 600px;
 }

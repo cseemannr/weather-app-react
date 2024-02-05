@@ -11,8 +11,14 @@ export default function Weather() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-
   const [loading, setLoading] = useState(false);
+  const [unit, setUnit] = useState("metric");
+
+  const handleUnitChange = (value) => {
+    console.log(value);
+    setUnit(value);
+    callApiWeather(city);
+  };
 
   function getForecast(res) {
     setForecast(res.data.daily.slice(1, 7));
@@ -41,17 +47,12 @@ export default function Weather() {
   }
 
   function callApiForecast(lat, lon) {
-    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
-    axios
-      .get(url)
-      .then(getForecast)
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}&units=${unit}`;
+    axios.get(url).then(getForecast).catch(handleError);
   }
 
   function callApiWeather(search) {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&APPID=${key}&units=metric `;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&APPID=${key}&units=${unit} `;
     axios.get(url).then(getWeather).catch(handleError);
   }
 
@@ -124,7 +125,15 @@ export default function Weather() {
           ""
         )}
 
-        {weather ? <CurrentWeather weather={weather} /> : ""}
+        {weather ? (
+          <CurrentWeather
+            weather={weather}
+            handleClick={handleUnitChange}
+            currentUnit={unit}
+          />
+        ) : (
+          ""
+        )}
         {forecast ? (
           <div className="forecast-container row text-center mt-5">
             {forecast.map((day, index) => {
