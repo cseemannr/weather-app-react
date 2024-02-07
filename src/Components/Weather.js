@@ -29,7 +29,6 @@ export default function Weather() {
   }
 
   function getWeather(res) {
-    console.log(res);
     setWeather({
       name: res.data.name,
       description: res.data.weather[0].description,
