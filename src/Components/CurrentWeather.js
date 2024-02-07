@@ -44,18 +44,18 @@ export default function CurrentWeather({ weather, handleClick, currentUnit }) {
           ºF
         </a>
       </div>
-      <div className="col-sm-6">
+      <div className="col-sm-4">
         <h2 className="display-1">
           {weather.temp}
           <span className="display-6">{tempUnit}</span>
         </h2>
       </div>
       <img
-        className="col-sm-6 current-weather-img"
+        className="col-sm-4 current-weather-img"
         src={`https://openweathermap.org/img/wn/${weather.icon}@4x.png`}
         alt={`${weather.description} icon`}
       />
-      <div className="col-sm-6">
+      <div className="col-sm-4">
         <p>
           <img className="svg-icon" src={maxTemp} alt="Max temperature icon" />
           {weather.temp_max}

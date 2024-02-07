@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
@@ -11,13 +11,17 @@ export default function Weather() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [unit, setUnit] = useState("metric");
 
   const handleUnitChange = (value) => {
     setUnit(value);
-    callApiWeather(city);
+    setLoading(true);
   };
+
+  useEffect(() => {
+    callApiWeather(city);
+  }, [unit]);
 
   function getForecast(res) {
     setForecast(res.data.daily.slice(1, 7));
@@ -25,6 +29,7 @@ export default function Weather() {
   }
 
   function getWeather(res) {
+    console.log(res);
     setWeather({
       name: res.data.name,
       description: res.data.weather[0].description,
@@ -118,7 +123,7 @@ export default function Weather() {
 
         {loading ? (
           <div className="container mb-5">
-            <BarLoader color="#EC6E4C" />
+            <BarLoader className="loading-bar" color="#4c6fec" height={8} />
           </div>
         ) : (
           ""
