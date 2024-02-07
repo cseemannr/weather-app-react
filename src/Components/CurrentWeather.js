@@ -1,4 +1,5 @@
 import React from "react";
+import { generateDay, generateTime } from "./DayTimeFunctions";
 
 import maxTemp from "../icons/maxtemp.svg";
 import minTemp from "../icons/mintemp.svg";
@@ -8,16 +9,6 @@ import sunrise from "../icons/sunrise.svg";
 import sunset from "../icons/sunset.svg";
 
 export default function CurrentWeather({ weather, handleClick, currentUnit }) {
-  let daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
   let tempUnit;
   let windUnit;
 
@@ -27,27 +18,6 @@ export default function CurrentWeather({ weather, handleClick, currentUnit }) {
   } else {
     tempUnit = "ºF";
     windUnit = "mph";
-  }
-
-  function generateTime(date) {
-    let now = new Date(date * 1000);
-    let currentHours = now.getHours();
-    let currentMinutes = now.getMinutes();
-
-    if (currentHours < 10) {
-      currentHours = `0${currentHours}`;
-    }
-    if (currentMinutes < 10) {
-      currentMinutes = `0${currentMinutes}`;
-    }
-
-    return `${currentHours}:${currentMinutes}`;
-  }
-
-  function generateDay(date) {
-    let now = new Date(date * 1000);
-    let currentDay = daysOfWeek[now.getDay()];
-    return currentDay;
   }
 
   return (

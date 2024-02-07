@@ -15,7 +15,6 @@ export default function Weather() {
   const [unit, setUnit] = useState("metric");
 
   const handleUnitChange = (value) => {
-    console.log(value);
     setUnit(value);
     callApiWeather(city);
   };

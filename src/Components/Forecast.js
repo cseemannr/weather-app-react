@@ -1,22 +1,7 @@
 import React from "react";
+import { generateDay } from "./DayTimeFunctions";
 
 export default function Forecast({ forecast }) {
-  let daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  function generateDay(date) {
-    let now = new Date(date * 1000);
-    let currentDay = daysOfWeek[now.getDay()];
-    return currentDay;
-  }
-
   return (
     <div className="col-sm-2">
       <p className="forecast-day">{generateDay(forecast.dt).slice(0, 3)}</p>
